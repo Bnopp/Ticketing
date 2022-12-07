@@ -79,12 +79,14 @@ class HomeController extends Controller
 
             if (count($userToConnect) > 0)
             {
-                if (password_verify($_POST['password'], $userToConnect[0]['accPassword']))
+                if (password_verify($_POST['password'], $userToConnect[0]['usePassword']))
                 {
                     session_regenerate_id();
                     $_SESSION['loggedIn'] = TRUE;
-                    $_SESSION['fullName'] = $userToConnect[0]['accFirstName'] . " " . $userToConnect[0]['accLastName'];
-                    $_SESSION['id'] = $userToConnect[0]['idAccount'];
+                    $_SESSION['isAdmin'] = $userToConnect[0]['useAdmin'];
+                    $_SESSION['firstName'] = $userToConnect[0]['useSurname'];
+                    $_SESSION['lastName'] = $userToConnect[0]['userName'];
+                    $_SESSION['id'] = $userToConnect[0]['idUser'];
                 }
                 else 
                 {
@@ -97,14 +99,21 @@ class HomeController extends Controller
             echo 'wrong username and/or password';
         }
 
-        //var_dump($_POST);
-
         header('Location: index.php');
     }
 
     private function homeAction()
     {
-        $view = file_get_contents('view/page/home/home.php');
+
+        if ($_SESSION['isAdmin'] == '0')
+        {
+            $view = file_get_contents('view/page/home/user_dashboard.php');
+        }
+        else
+        {
+            $view = file_get_contents('view/page/home/admin_dashboard.php');
+        }
+        
         ob_start();
         eval('?>' . $view);
         $content = ob_get_clean();
