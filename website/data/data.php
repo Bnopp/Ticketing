@@ -116,16 +116,15 @@ class Data
                     $req->bindValue($key, $value["value"], $value["type"]);
                 }
             }
-
+            
             $req->execute();
-
             return $req;
         }
         catch(PDOException $e)
         {
             /* Redirecting the user to the error page. */
             $_SESSION['error'] = "Erreur de requête. Erreur: {$e->getMessage()}";
-            header("Location: index.php?controller=home&action=error");
+            header("Location: index.php?controller=home&action=home");
             die();
         }
     }
