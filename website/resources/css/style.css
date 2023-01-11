@@ -290,6 +290,7 @@ button:active {
 .reply-area .reply p {
     margin: 0;
     padding: 0;
+    overflow-wrap: break-word;
 }
 
 .ticket {

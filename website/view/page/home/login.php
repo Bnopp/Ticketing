@@ -25,5 +25,5 @@
             </form>
         </div>
     </div>
-    <p>Copyright © Serghei Diulgherov - BnoppSoftware. All rights reserved.</p>
+    <p>Copyright © Serghei Diulgherov - CIN3B - ETML. All rights reserved.</p>
 </div>
